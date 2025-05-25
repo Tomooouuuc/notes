@@ -171,6 +171,30 @@ public:
     }  
     void del(int val){  
         delete_node(head,val);  
+    }
+    friend ostream& operator<<(ostream& os,const Tree &t){  
+        os<<"======================="<<endl;  
+        queue<Node*> q;  
+        q.push(t.head);  
+        while(!q.empty()){  
+            int n=q.size();  
+            os<<"--------------------"<<endl;  
+            for(int i=0;i<n;i++){  
+                Node *node=q.front();  
+                q.pop();  
+                os<<"("<<node->val<<",";  
+                node->left==nullptr?os<<"N,":os<<node->left->val<<",";  
+                node->right==nullptr?os<<"N)"<<endl:os<<node->right->val<<")"<<endl;  
+                if(node->left){  
+                    q.push(node->left);  
+                }  
+                if(node->right){  
+                    q.push(node->right);  
+                }  
+            }  
+        }  
+        os<<"======================="<<endl;  
+        return os;  
     }  
 };  
   
@@ -184,3 +208,4 @@ int main(){
     cout<<boolalpha<<t.get(6)<<endl;  
 }
 ```
+
