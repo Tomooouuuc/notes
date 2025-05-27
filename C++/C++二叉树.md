@@ -3,118 +3,155 @@
 using namespace std;  
   
 struct Node{  
-    int val;  
-    Node *left,*right;  
-    Node(int val):val(val),left(nullptr),right(nullptr){};  
+    int val,h=1;  
+    Node *left=nullptr,*right=nullptr;  
+    Node(int val):val(val){};  
 };  
   
-class Tree{  
-    Node *head;  
-    Node* build(vector<int> arr,int i){  
-        if(i>=arr.size()){  
-            return nullptr;  
+class AVLTree {  
+    Node *head=nullptr;  
+    void destroy(Node *node){  
+        if(!node){  
+            return;  
         }  
-        Node *node=new Node(arr[i]);  
-        node->left=build(arr,2*i+1);  
-        node->right=build(arr,2*i+2);  
+        destroy(node->left);  
+        destroy(node->right);  
+        delete node;  
+    }  
+    int get_h(Node *node){  
+        return node?node->h:0;  
+    }  
+    void update_h(Node *node){  
+        node->h=max(get_h(node->left),get_h(node->right))+1;  
+    }  
+    int get_balance(Node *node){  
+        return node?get_h(node->left)-get_h(node->right):0;  
+    }  
+    Node* rotate_L(Node *node){  
+        Node *tmp=node->right;  
+        node->right=node->right->left;  
+        tmp->left=node;  
+        update_h(node);  
+        update_h(tmp);  
+        return tmp;  
+    }  
+    Node* rotate_R(Node *node){  
+        Node *tmp=node->left;  
+        node->left=node->left->right;  
+        tmp->right=node;  
+        update_h(node);  
+        update_h(tmp);  
+        return tmp;  
+    }  
+    Node* balance(Node *node){  
+        int diff=get_balance(node);  
+        if(abs(diff)<=1){  
+            return node;  
+        }  
+        if(diff>1){  
+            if(get_balance(node->left)<-1){  
+                node->left=rotate_L(node->left);  
+            }  
+            node=rotate_R(node);  
+        }  
+        if(diff<-1){  
+            if(get_balance(node->right)>1){  
+                node->right=rotate_R(node->right);  
+            }  
+            node=rotate_L(node);  
+        }  
         return node;  
     }  
-    Node* build(vector<int> arr){  
-        Node *head=new Node(arr[0]);  
-        queue<Node*> q;  
-        q.push(head);  
-        for(int i=0;i<arr.size()/2;i++){  
-            Node *node=q.front();  
-            q.pop();  
-            if(2*i+1<arr.size()){  
-                node->left=new Node(arr[2*i+1]);  
-                q.push(node->left);  
+    Node* insert(Node *node,int val){  
+        if(!node){  
+            return new Node(val);  
+        }  
+        if(val<node->val){  
+            node->left=insert(node->left,val);  
+        }else{  
+            node->right=insert(node->right,val);  
+        }  
+        update_h(node);  
+        return balance(node);  
+    }  
+    Node* find_min(Node *node){  
+        while(node&&node->left){  
+            node=node->left;  
+        }  
+        return node;  
+    }  
+    Node* del(Node *node,int val){  
+        if(!node){  
+            return node;  
+        }  
+        if(val<node->val){  
+            node->left=del(node->left,val);  
+        }else if(val>node->val){  
+            node->right=del(node->right,val);  
+        }else{  
+            if(!node->left){  
+                Node *tmp=node->right;  
+                delete node;  
+                return tmp;  
+            }else if(!node->right){  
+                Node *tmp=node->left;  
+                delete node;  
+                return tmp;  
             }  
-            if(2*i+2<arr.size()){  
-                node->right=new Node(arr[2*i+2]);  
-            }  
+            Node *min_node=find_min(node->right);  
+            node->val=min_node->val;  
+            node->right=del(node->right,min_node->val);  
         }  
-        return head;  
+        update_h(node);  
+        return balance(node);  
     }  
-    void destroy(Node *head){  
-        if(head==nullptr){  
+    bool get(Node *node,int val){  
+        if(!node){  
+            return false;  
+        }  
+        if(node->val==val){  
+            return true;  
+        }  
+        return val<node->val?get(node->left,val):get(node->right,val);  
+    }  
+    void in(Node *node){  
+        if(!node){  
             return;  
         }  
-        destroy(head->left);  
-        destroy(head->right);  
-        delete head;  
-    }  
-    void pre(Node *head){  
-        if(head==nullptr){  
-            return;  
-        }  
-        cout<<head->val<<" ";  
-        pre(head->left);  
-        pre(head->right);  
-    }  
-    void in(Node *head){  
-        if(head==nullptr){  
-            return;  
-        }  
-        in(head->left);  
-        cout<<head->val<<" ";  
-        in(head->right);  
-    }  
-    void post(Node *head){  
-        if(head==nullptr){  
-            return;  
-        }  
-        post(head->left);  
-        post(head->right);  
-        cout<<head->val<<" ";  
+        in(node->left);  
+        cout<<node->val<<" ";  
+        in(node->right);  
     }  
 public:  
-    Tree():head(nullptr){};  
-    Tree(vector<int> arr){  
-//        head=build(arr,0);  
-        head=build(arr);  
+    AVLTree()=default;  
+    AVLTree(initializer_list<int> arr):AVLTree(vector<int>(arr)){};  
+    AVLTree(int *arr,int n):AVLTree(vector<int>(arr,arr+n)){};  
+    AVLTree(vector<int> arr){  
+        for(int num:arr){  
+            head=insert(head,num);  
+        }  
     }  
-    Tree(initializer_list<int> arr):Tree(vector<int>(arr)){};  
-    Tree(int *arr,int n):Tree(vector<int>(arr,arr+n)){};  
-    ~Tree(){  
+    ~AVLTree(){  
         destroy(head);  
     }  
-    void pre_order(){  
-        pre(head);  
-        cout<<endl;  
+    void insert_node(int val){  
+        head=insert(head,val);  
+    }  
+    void delete_node(int val){  
+        head=del(head,val);  
+    }  
+    bool get_node(int val){  
+        return get(head,val);  
     }  
     void in_order(){  
         in(head);  
-        cout<<endl;  
     }  
-    void post_order(){  
-        post(head);  
-        cout<<endl;  
-    }  
-    void order(){  
-        queue<Node*> q;  
-        q.push(head);  
-        while(!q.empty()){  
-            Node *node=q.front();  
-            q.pop();  
-            cout<<node->val<<" ";  
-            if(node->left){  
-                q.push(node->left);  
-            }  
-            if(node->right){  
-                q.push(node->right);  
-            }  
-        }  
-        cout<<endl;  
-    }  
+    vasv
 };  
   
 int main(){  
-    int arr[5]={1,2,3,4,5};  
-    Tree t(arr,5);  
-    t.order();  
-    t.pre_order();  
+    AVLTree t{1,2,3,4,5,6,7};  
     t.in_order();  
-    t.post_order();  
+    cout<<t<<endl;  
 }
 ```
