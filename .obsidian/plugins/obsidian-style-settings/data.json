@@ -6,5 +6,8 @@
   "Components@@Ribbon-autohide": false,
   "Components@@nav-header-autohide": false,
   "Components@@tab-title-bar-autohide": false,
-  "Components@@vault-profile-autohide": false
+  "Components@@vault-profile-autohide": false,
+  "Editor@@editor-grid-background-pattren": false,
+  "Editor@@code-normal@@light": "#1A454503",
+  "Editor@@code-function@@light": "#C10B0B00"
 }
