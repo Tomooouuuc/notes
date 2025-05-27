@@ -145,8 +145,8 @@ public:
     }  
     void in_order(){  
         in(head);  
-    }  
-    vasv
+    }
+    
 };  
   
 int main(){  
