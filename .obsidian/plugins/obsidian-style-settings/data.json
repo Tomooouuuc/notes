@@ -7,14 +7,12 @@
   "Components@@nav-header-autohide": false,
   "Components@@tab-title-bar-autohide": false,
   "Components@@vault-profile-autohide": false,
-  "Editor@@editor-grid-background-pattren": false,
-  "Editor@@line-hover-indicator": false,
-  "Editor@@focus-indicator-codeblock-line-number": true,
-  "Editor@@focus-indicator-list-level": true,
   "Components@@colorful-folder": true,
   "Components@@file-icon-remove": false,
   "Components@@folder-font-bold": true,
   "Components@@CTA-BTN-enable": false,
   "Components@@file-names-untrim": false,
-  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-autumn-topaz"
+  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-honey-milk-topaz",
+  "blue-topaz-theme@@toggle-bg-panel-page": true,
+  "blue-topaz-theme@@left-ribbon-style": "default-left-ribbon-style"
 }
