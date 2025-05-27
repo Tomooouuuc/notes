@@ -15,5 +15,6 @@
   "Components@@file-icon-remove": false,
   "Components@@folder-font-bold": true,
   "Components@@CTA-BTN-enable": false,
-  "Components@@file-names-untrim": false
+  "Components@@file-names-untrim": false,
+  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-autumn-topaz"
 }
