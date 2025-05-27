@@ -10,5 +10,10 @@
   "Editor@@editor-grid-background-pattren": false,
   "Editor@@line-hover-indicator": false,
   "Editor@@focus-indicator-codeblock-line-number": true,
-  "Editor@@focus-indicator-list-level": true
+  "Editor@@focus-indicator-list-level": true,
+  "Components@@colorful-folder": true,
+  "Components@@file-icon-remove": false,
+  "Components@@folder-font-bold": true,
+  "Components@@CTA-BTN-enable": false,
+  "Components@@file-names-untrim": false
 }
