@@ -63,7 +63,7 @@ class Tree{
             root->right=insert_node(root->right,val);  
         }  
         update_h(root);  
-            return balance(root);  
+        return balance(root);  
     }  
     Node* delete_node(Node *root,int val){  
         if(root==nullptr){  
