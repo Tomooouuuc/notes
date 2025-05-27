@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "C++/C++二叉平衡树.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -171,8 +171,9 @@
   },
   "active": "796b31a7a9d135b3",
   "lastOpenFiles": [
-    "C++/C++二叉排序树.md",
+    "未命名.md",
     "C++/C++二叉平衡树.md",
+    "C++/C++二叉排序树.md",
     "C++/C++排序算法.md",
     "C++/C++二叉树.md",
     "C++/C++链表.md",
@@ -180,7 +181,6 @@
     "创建链接.md",
     "欢迎.md",
     "C++/未命名.canvas",
-    "未命名.md",
     "C++",
     "notes",
     "C++ Primer (第5版中文版) (Stanley B. Lippman，Josee Lajoie，Barbara E. Moo) (Z-Library).pdf",

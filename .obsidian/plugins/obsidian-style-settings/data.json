@@ -8,5 +8,7 @@
   "Components@@tab-title-bar-autohide": false,
   "Components@@vault-profile-autohide": false,
   "Editor@@editor-grid-background-pattren": false,
-  "Editor@@line-hover-indicator": true
+  "Editor@@line-hover-indicator": false,
+  "Editor@@focus-indicator-codeblock-line-number": true,
+  "Editor@@focus-indicator-list-level": true
 }
