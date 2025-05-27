@@ -8,6 +8,8 @@
   "Components@@tab-title-bar-autohide": false,
   "Components@@vault-profile-autohide": false,
   "Editor@@editor-grid-background-pattren": false,
-  "Editor@@code-normal@@light": "#1A454503",
-  "Editor@@code-function@@light": "#C10B0B00"
+  "Editor@@code-function@@light": "#00000000",
+  "Editor@@code-value@@light": "#00000000",
+  "Editor@@line-hover-indicator": true,
+  "Editor@@code-normal@@light": "#00000000"
 }
