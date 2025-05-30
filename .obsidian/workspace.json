@@ -156,7 +156,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,7 +170,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "09b76193e2a8b0b8",
+  "active": "d65a1518d03f8b29",
   "lastOpenFiles": [
     "C++/C++二叉排序树.md",
     "C++/C++二叉平衡树.md",
