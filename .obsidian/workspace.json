@@ -142,21 +142,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "C++ Primer (第5版中文版) (Stanley B. Lippman，Josee Lajoie，Barbara E. Moo) (Z-Library).pdf",
+                "file": "C++/C++二叉平衡树.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "C++ Primer (第5版中文版) (Stanley B. Lippman，Josee Lajoie，Barbara E. Moo) (Z-Library) 的大纲"
+              "title": "C++二叉平衡树 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,7 +169,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d65a1518d03f8b29",
+  "active": "09b76193e2a8b0b8",
   "lastOpenFiles": [
     "C++/C++二叉排序树.md",
     "C++/C++二叉平衡树.md",
