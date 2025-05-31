@@ -143,8 +143,8 @@
               "type": "outline",
               "state": {
                 "file": "C++/C++二叉平衡树.md",
-                "followCursor": false,
-                "showSearch": false,
+                "followCursor": true,
+                "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
