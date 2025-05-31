@@ -47,5 +47,6 @@
   "Components@@CTA-BTN-enable": false,
   "Components@@colorful-folder": true,
   "Components@@outline-enhanced": false,
-  "Editor@@editor-grid-background-pattren": true
+  "Editor@@editor-grid-background-pattren": true,
+  "Editor@@codeblock-style-select": "codeblock-style-customize"
 }
