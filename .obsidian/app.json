@@ -1,4 +1,5 @@
 {
   "showLineNumber": false,
-  "strictLineBreaks": true
+  "strictLineBreaks": false,
+  "attachmentFolderPath": "/"
 }
