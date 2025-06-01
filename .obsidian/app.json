@@ -1,5 +1,5 @@
 {
   "showLineNumber": false,
   "strictLineBreaks": false,
-  "attachmentFolderPath": "/img"
+  "attachmentFolderPath": "/img/{filename}"
 }
