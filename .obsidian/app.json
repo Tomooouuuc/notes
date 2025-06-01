@@ -1,5 +1,7 @@
 {
   "showLineNumber": false,
   "strictLineBreaks": false,
-  "attachmentFolderPath": "/img/{filename}"
+  "attachmentFolderPath": "/",
+  "newFileLocation": "root",
+  "newFileFolderPath": ""
 }
