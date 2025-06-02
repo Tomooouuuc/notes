@@ -44,5 +44,6 @@
   "Appearance-light@@color-activated-tab-header-underline-light": "var(--color-accent)",
   "Appearance-light@@workspace-divider-transparent-light": true,
   "Components@@colorful-folder": true,
-  "Editor@@code-background-light": " "
+  "Editor@@code-background-light": " ",
+  "anuppuccin-theme-settings@@anp-active-line": "anp-no-highlight"
 }
