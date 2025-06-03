@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#fdsaf",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -170,7 +171,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d65a1518d03f8b29",
+  "active": "8cf44daddefbabf6",
   "lastOpenFiles": [
     "C++/C++二叉排序树.md",
     "C++/C++排序算法.md",
