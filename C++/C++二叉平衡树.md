@@ -182,9 +182,3 @@ int main(){
     cout<<t<<endl;  
 }
 ```
-
-### ff
-## fasfaf
-
-# fdsaf
-
