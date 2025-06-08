@@ -1,4 +1,7 @@
 {
   "cssTheme": "",
-  "theme": "system"
+  "theme": "system",
+  "enabledCssSnippets": [
+    "image"
+  ]
 }

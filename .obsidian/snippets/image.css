@@ -1,0 +1,5 @@
+div[data-path$='image'], 
+div[data-path$='image'] + div.nav-folder-children 
+{
+	display: none;
+}
