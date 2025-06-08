@@ -3,5 +3,6 @@
   "strictLineBreaks": false,
   "attachmentFolderPath": "/",
   "newFileLocation": "root",
-  "newFileFolderPath": ""
+  "newFileFolderPath": "",
+  "newLinkFormat": "shortest"
 }

@@ -1,5 +1,5 @@
 {
-  "attachmentFolderPath": "./assets/${filename}",
+  "attachmentFolderPath": "./image/.${filename}",
   "attachmentRenameMode": "Only pasted images",
   "customTokensStr": "",
   "duplicateNameSeparator": " ",
