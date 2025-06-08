@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/rrrr.md",
+                "file": "C++/C++二叉排序树.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "rrrr"
+              "title": "C++二叉排序树"
             }
           }
         ]
@@ -167,16 +167,18 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "oz-clear-unused-images:Clear Unused Images": false
     }
   },
   "active": "d65a1518d03f8b29",
   "lastOpenFiles": [
+    "C++/rrrr.md",
+    "C++/image/rrrr/file-20250608155015065.png",
     "C++/image/rrrr/file-20250608154710017.png",
     "C++/image/rrrr/file-20250608154407722.png",
     "C++/image/rrrr",
     "C++/C++二叉排序树.md",
-    "C++/rrrr.md",
     "scscs/ssss.md",
     "scscs/image/ssss",
     "scscs/image",
@@ -192,8 +194,6 @@
     "C++/image/C++二叉排序树/file-20250608153924600.png",
     "C++/image/C++二叉排序树/file-20250608153848905.png",
     "C++/image/C++二叉排序树/file-20250608153724645.png",
-    "C++/image/C++二叉排序树/file-20250608153420358.png",
-    "C++/image/C++二叉排序树/file-20250608152447798.png",
     "C++/_image/C++二叉排序树",
     "C++/_image",
     "C++/C++红黑树.md",
