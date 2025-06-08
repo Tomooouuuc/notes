@@ -1,5 +1,5 @@
 {
-  "attachmentFolderPath": "./image/.${filename}",
+  "attachmentFolderPath": "../.image/${filename}",
   "attachmentRenameMode": "Only pasted images",
   "customTokensStr": "",
   "duplicateNameSeparator": " ",
@@ -11,7 +11,7 @@
   "markdownUrlFormat": "",
   "shouldConvertPastedImagesToJpeg": false,
   "shouldDeleteOrphanAttachments": false,
-  "shouldRenameAttachmentFiles": false,
+  "shouldRenameAttachmentFiles": true,
   "shouldRenameAttachmentFolder": true,
   "shouldRenameAttachmentsToLowerCase": false,
   "shouldRenameCollectedAttachments": false,
