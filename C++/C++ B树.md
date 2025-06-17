@@ -170,6 +170,19 @@ class BTree{
         }  
         return node;  
     }  
+    bool get(Node *node,int val){  
+        int pos=0;  
+        while(pos<node->n&&node->val[pos]<val){  
+            pos++;  
+        }  
+        if(pos<node->n&&node->val[pos]==val){  
+            return true;  
+        }  
+        if(node->next[0]){  
+            return get(node->next[pos],val);  
+        }  
+        return false;  
+    }  
 public:  
     BTree(int m=5):m(m){  
         root=new Node(m);  
@@ -197,6 +210,9 @@ public:
             delete root;  
             root=new_root;  
         }  
+    }  
+    bool get_node(int val){  
+        return get(root,val);  
     }  
     bool check(){  
         queue<Node*> q;  
@@ -306,39 +322,5 @@ private:
         }  
         return true;  
     }  
-};  
-  
-int main(){  
-    int size=10000;  
-    int test_time=10000;  
-    int speed=100;  
-    mt19937 seed(time(nullptr));  
-    uniform_int_distribution<int> gen(0,size);  
-    uniform_int_distribution<int> gen1(0,size);  
-    for(int i=0;i<test_time;i++){  
-        if(i%speed==0){  
-            cout<<i<<" ";  
-        }  
-        if(i%(speed*10)==0){  
-            cout<<endl;  
-        }  
-        vector<int> arr;  
-        for(int j=0;j<=size;j++){  
-            arr.push_back(gen(seed));  
-        }  
-        BTree tree(arr);  
-        bool flag=tree.check();  
-        if(!flag){  
-            break;  
-        }  
-        for(int i=0;i<size/2;i++){  
-            tree.erase_node(arr[gen1(seed)]);  
-        }  
-        flag=tree.check();  
-        if(!flag){  
-            break;  
-        }  
-    }  
-    return 0;  
-}
+};
 ```
