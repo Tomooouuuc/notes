@@ -1,3 +1,5 @@
+
+1、使用了DBLACK来标识被删除的位置，用来进行删除调整
 ```cpp
 #include<bits/stdc++.h>  
 using namespace std;  
