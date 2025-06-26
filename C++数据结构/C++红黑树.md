@@ -254,3 +254,253 @@ public:
 ```
 
 
+2、使用parent指针，不使用DBLACK
+```cpp
+#include <iostream>  
+#include <queue>  
+#include <random>  
+#include <string>  
+#include <vector>  
+  
+using namespace std;  
+  
+enum Color {  
+    RED,  
+    BLACK  
+};  
+  
+struct Node {  
+    int val;  
+    Color color;  
+    Node *left, *right, *parent;  
+    Node(int val, Color color = RED) : val(val), color(color), left(nullptr), right(nullptr), parent(nullptr) {};  
+};  
+  
+class RBTree {  
+    Node *root, *nil;  
+    void clear(Node* node) {  
+        if (node == nil) {  
+            return;  
+        }  
+        clear(node->left);  
+        clear(node->right);  
+        delete node;  
+    }  
+    Node* rotate_L(Node* node) {  
+        Node* tmp = node->right;  
+        node->right = tmp->left;  
+        tmp->left = node;  
+        if (node->parent == nil) {  
+            root = tmp;  
+        } else if (node->parent->left == node) {  
+            node->parent->left = tmp;  
+        } else if (node->parent->right == node) {  
+            node->parent->right = tmp;  
+        }  
+        if (node->right != nil) {  
+            node->right->parent = node;  
+        }  
+        tmp->parent = node->parent;  
+        node->parent = tmp;  
+        return tmp;  
+    }  
+    Node* rotate_R(Node* node) {  
+        Node* tmp = node->left;  
+        node->left = tmp->right;  
+        tmp->right = node;  
+        if (node->parent == nil) {  
+            root = tmp;  
+        } else if (node->parent->left == node) {  
+            node->parent->left = tmp;  
+        } else if (node->parent->right == node) {  
+            node->parent->right = tmp;  
+        }  
+        if (node->left != nil) {  
+            node->left->parent = node;  
+        }  
+        tmp->parent = node->parent;  
+        node->parent = tmp;  
+        return tmp;  
+    }  
+    bool has_red(Node* node) {  
+        return node->left->color == RED || node->right->color == RED;  
+    }  
+    void insert_fix(Node* node) {  
+        if (node->color == BLACK || !has_red(node)) {  
+            return;  
+        }  
+        Node *parent = node->parent, *child;  
+        if (parent->left == node) {  
+            if (node->right->color == RED) {  
+                node = rotate_L(node);  
+            }  
+            parent = rotate_R(parent);  
+        } else {  
+            if (node->left->color == RED) {  
+                node = rotate_R(node);  
+            }  
+            parent = rotate_L(parent);  
+        }  
+        parent->color = RED;  
+        parent->left->color = parent->right->color = BLACK;  
+        return;  
+    }  
+    void insert(Node* node, int val) {  
+        if (node == nil) {  
+            root = new Node(val);  
+            root->left = root->right = root->parent = nil;  
+            return;  
+        }  
+        if (val < node->val) {  
+            if (node->left == nil) {  
+                Node* new_node = new Node(val);  
+                new_node->left = new_node->right = nil;  
+                new_node->parent = node;  
+                node->left = new_node;  
+            } else {  
+                insert(node->left, val);  
+            }  
+        } else {  
+            if (node->right == nil) {  
+                Node* new_node = new Node(val);  
+                new_node->left = new_node->right = nil;  
+                new_node->parent = node;  
+                node->right = new_node;  
+            } else {  
+                insert(node->right, val);  
+            }  
+        }  
+        insert_fix(node);  
+    }  
+    public:  
+    RBTree() {  
+        nil = new Node(0, BLACK);  
+        nil->left = nil->right = nil->parent = nil;  
+        root = nil;  
+    }  
+    RBTree(vector<int> arr) : RBTree() {  
+        for (int num : arr) {  
+            insert_node(num);  
+        }  
+    }  
+    ~RBTree() {  
+        clear(root);  
+        delete nil;  
+    }  
+    void insert_node(int val) {  
+        insert(root, val);  
+        root->color = BLACK;  
+    }  
+    friend ostream& operator<<(ostream& os, const RBTree& tree) {  
+        os << "===========================" << endl;  
+        queue<Node*> q;  
+        q.push(tree.root);  
+        while (!q.empty()) {  
+            int n = q.size();  
+            os << "---------------------------" << endl;  
+            for (int i = 0; i < n; i++) {  
+                Node* node = q.front();  
+                q.pop();  
+                os << "(" << node->val << ",";  
+                os << (node->color == RED ? "R" : "B") << "|";  
+                os << (node->left == tree.nil ? "N" : to_string(node->left->val)) << ",";  
+                os << (node->right == tree.nil ? "N" : to_string(node->right->val)) << ",";  
+                os << (node->parent == tree.nil ? "N" : to_string(node->parent->val)) << ")" << endl;  
+                if (node->left != tree.nil) {  
+                    q.push(node->left);  
+                }  
+                if (node->right != tree.nil) {  
+                    q.push(node->right);  
+                }  
+            }  
+        }  
+        os << "===========================" << endl;  
+        return os;  
+    }  
+    bool check() {  
+        if (root->color == RED) {  
+            cout << "违反了根节点是红色的性质" << endl;  
+            return false;  
+        }  
+        if (!check_red(root)) {  
+            cout << "违反了子父节点不能都是红色的性质" << endl;  
+            return false;  
+        }  
+        int black_num = check_black(root);  
+        if (black_num == -1) {  
+            cout << "违反了根节点到叶子节点黑色节点数量相等的性质" << endl;  
+            return false;  
+        }  
+        if (!check_order(root)) {  
+            cout << "违反了节点有序的性质" << endl;  
+            return false;  
+        }  
+        return true;  
+    }  
+    private:  
+    bool check_red(Node* node) {  
+        if (node == nil) {  
+            return true;  
+        }  
+        if (node->color == RED) {  
+            if (node->left->color == RED || node->right->color == RED) {  
+                return false;  
+            }  
+        }  
+        return check_red(node->left) && check_red(node->right);  
+    }  
+    int check_black(Node* node) {  
+        if (node == nil) {  
+            return 0;  
+        }  
+        int left = check_black(node->left);  
+        int right = check_black(node->right);  
+        if (left == -1 || right == -1) {  
+            return -1;  
+        }  
+        if (left != 0 && right != 0 && left != right) {  
+            return -1;  
+        }  
+        return left + (node->color == BLACK ? 1 : 0);  
+    }  
+    bool check_order(Node* node) {  
+        if (node == nil) {  
+            return true;  
+        }  
+        if (node->left != nil && node->left->val > node->val) {  
+            return false;  
+        }  
+        if (node->right != nil && node->right->val < node->val) {  
+            return false;  
+        }  
+        return check_order(node->left) && check_order(node->right);  
+    }  
+};  
+  
+int main() {  
+    int size = 10000;  
+    int test_time = 10000;  
+    int speed = 100;  
+    mt19937 seed(time(nullptr));  
+    uniform_int_distribution<int> gen(0, size);  
+    for (int i = 0; i < test_time; i++) {  
+        if (i % speed == 0) {  
+            cout << i << " ";  
+        }  
+        if (i % (speed * 10) == 0) {  
+            cout << endl;  
+        }  
+        vector<int> arr;  
+        for (int j = 0; j <= size; j++) {  
+            arr.push_back(gen(seed));  
+        }  
+        RBTree* tree = new RBTree(arr);  
+        bool flag = tree->check();  
+        delete tree;  
+        if (!flag) {  
+            break;  
+        }  
+    }  
+    return 0;  
+}
+```
