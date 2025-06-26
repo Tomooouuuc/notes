@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++数据结构/C++ B树.md",
+                "file": "C++数据结构/C++红黑树.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C++ B树"
+              "title": "C++红黑树"
             }
           }
         ]
@@ -173,9 +173,9 @@
   },
   "active": "a275294249363c99",
   "lastOpenFiles": [
+    "C++数据结构/C++ B树.md",
     "C++数据结构/C++红黑树.md",
     "C++数据结构/C++二叉平衡树.md",
-    "C++数据结构/C++ B树.md",
     "C++",
     "C++数据结构/C++二叉排序树.md",
     "C++数据结构/C++跳表.md",
