@@ -372,11 +372,94 @@ class RBTree {
     bool has_red(Node* node) {  
         return node->left->color == RED || node->right->color == RED;  
     }  
-    void erase_fix(Node* node, Node* parent) {  
+    // void erase_fix(Node* node, Node* parent) {  
+    //     if (node == root || node->color == RED) {  
+    //         return;  
+    //     }  
+    //     if (parent->left == node) {  
+    //         Node* bro = parent->right;  
+    //         if (bro->color == BLACK) {  
+    //             if (has_red(bro)) {  
+    //                 Color parent_color = parent->color;  
+    //                 if (bro->right->color == RED) {  
+    //                     parent = rotate_L(parent);  
+    //                 } else {  
+    //                     bro = rotate_R(bro);  
+    //                     parent = rotate_L(parent);  
+    //                 }  
+    //                 parent->color = parent_color;  
+    //                 parent->left->color = parent->right->color = BLACK;  
+    //             } else {  
+    //                 bro->color = RED;  
+    //                 parent->color = BLACK;  
+    //                 erase_fix(parent, parent->parent);  
+    //             }  
+    //         } else {  
+    //             parent = rotate_L(parent);  
+    //             parent->color = BLACK;  
+    //             parent->left->color = RED;  
+    //             erase_fix(node, node->parent);  
+    //         }  
+    //     } else {  
+    //         Node* bro = parent->left;  
+    //         if (bro->color == BLACK) {  
+    //             if (has_red(bro)) {  
+    //                 Color parent_color = parent->color;  
+    //                 if (bro->left->color == RED) {  
+    //                     parent = rotate_R(parent);  
+    //                 } else {  
+    //                     bro = rotate_L(bro);  
+    //                     parent = rotate_R(parent);  
+    //                 }  
+    //                 parent->color = parent_color;  
+    //                 parent->left->color = parent->right->color = BLACK;  
+    //             } else {  
+    //                 bro->color = RED;  
+    //                 parent->color = BLACK;  
+    //                 erase_fix(parent, parent->parent);  
+    //             }  
+    //         } else {  
+    //             parent = rotate_R(parent);  
+    //             parent->color = BLACK;  
+    //             parent->right->color = RED;  
+    //             erase_fix(node, node->parent);  
+    //         }  
+    //     }  
+    // }  
+    // Node* erase(Node* node, int val) {  
+    //     if (node == nil) {  
+    //         return node;  
+    //     }  
+    //     if (val < node->val) {  
+    //         node->left = erase(node->left, val);  
+    //     } else if (val > node->val) {  
+    //         node->right = erase(node->right, val);  
+    //     } else {  
+    //         if (node->left == nil || node->right == nil) {  
+    //             Node* tmp = node->left == nil ? node->right : node->left;  
+    //             if (tmp != nil) {  
+    //                 tmp->parent = node->parent;  
+    //                 tmp->color = BLACK;  
+    //             }  
+    //             if (node->color == BLACK && tmp == nil) {  
+    //                 erase_fix(node, node->parent);  
+    //             }  
+    //             delete node;  
+    //             return tmp;  
+    //         } else {  
+    //             Node* min_node = find_min_node(node->right);  
+    //             node->val = min_node->val;  
+    //             node->right = erase(node->right, min_node->val);  
+    //         }  
+    //     }  
+    //     return node;  
+    // }  
+        void erase_fix(Node* node) {  
         if (node == root || node->color == RED) {  
             return;  
         }  
-        if (parent->left == node) {  
+        Node* parent = node->parent;  
+        if (parent->left == nil) {  
             Node* bro = parent->right;  
             if (bro->color == BLACK) {  
                 if (has_red(bro)) {  
@@ -392,13 +475,13 @@ class RBTree {
                 } else {  
                     bro->color = RED;  
                     parent->color = BLACK;  
-                    erase_fix(parent, parent->parent);  
+                    erase_fix(parent);  
                 }  
             } else {  
                 parent = rotate_L(parent);  
                 parent->color = BLACK;  
                 parent->left->color = RED;  
-                erase_fix(node, node->parent);  
+                erase_fix(node);  
             }  
         } else {  
             Node* bro = parent->left;  
@@ -416,13 +499,13 @@ class RBTree {
                 } else {  
                     bro->color = RED;  
                     parent->color = BLACK;  
-                    erase_fix(parent, parent->parent);  
+                    erase_fix(parent);  
                 }  
             } else {  
                 parent = rotate_R(parent);  
                 parent->color = BLACK;  
                 parent->right->color = RED;  
-                erase_fix(node, node->parent);  
+                erase_fix(node);  
             }  
         }  
     }  
@@ -430,12 +513,11 @@ class RBTree {
         if (node == nil) {  
             return node;  
         }  
+        Node* delete_node;  
         if (val < node->val) {  
-            node->left = erase(node->left, val);  
-            int a = 1;  
+            delete_node = erase(node->left, val);  
         } else if (val > node->val) {  
-            node->right = erase(node->right, val);  
-            int b = 1;  
+            delete_node = erase(node->right, val);  
         } else {  
             if (node->left == nil || node->right == nil) {  
                 Node* tmp = node->left == nil ? node->right : node->left;  
@@ -443,18 +525,19 @@ class RBTree {
                     tmp->parent = node->parent;  
                     tmp->color = BLACK;  
                 }  
-                if (node->color == BLACK && tmp == nil) {  
-                    erase_fix(node, node->parent);  
+                if (node->parent->left == node) {  
+                    node->parent->left = tmp;  
+                } else if (node->parent->right == node) {  
+                    node->parent->right = tmp;  
                 }  
-                delete node;  
-                return tmp;  
+                return node;  
             } else {  
                 Node* min_node = find_min_node(node->right);  
                 node->val = min_node->val;  
-                node->right = erase(node->right, min_node->val);  
+                delete_node = erase(node->right, min_node->val);  
             }  
         }  
-        return node;  
+        return delete_node;  
     }  
     public:  
     RBTree() {  
@@ -479,8 +562,17 @@ class RBTree {
         root->color = BLACK;  
     }  
     void erase_node(int val) {  
-        erase(root, val);  
+        Node* delete_node = erase(root, val);  
         root->color = BLACK;  
+        if (delete_node->color == BLACK) {  
+            Node* child = delete_node->left != nil ? delete_node->left : delete_node->right;  
+            if (child != nil) {  
+                child->color = BLACK;  
+            } else {  
+                erase_fix(delete_node);  
+            }  
+        }  
+        delete delete_node;  
     }  
     friend ostream& operator<<(ostream& os, const RBTree& tree) {  
         os << "===========================" << endl;  
@@ -571,10 +663,10 @@ class RBTree {
 int main() {  
     mt19937 seed(time(nullptr));  
     uniform_int_distribution<int> gen(1, 9);  
-    vector<int> arr{1, 2, 3, 4, 5, 6, 7, 8, 9};  
+    vector<int> arr{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};  
     RBTree tree(arr);  
     cout << tree << endl;  
-    vector<int> arr1{8};  
+    vector<int> arr1{4};  
     for (int i = 0; i < arr1.size(); i++) {  
         cout << "开始删除：" << arr1[i] << endl;  
         tree.erase_node(arr1[i]);  
