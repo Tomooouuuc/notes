@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++数据结构/C++红黑树.md",
+                "file": "C++数据结构/C++二叉树.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C++红黑树"
+              "title": "C++二叉树"
             }
           }
         ]
@@ -173,8 +173,9 @@
   },
   "active": "a275294249363c99",
   "lastOpenFiles": [
-    "C++数据结构/C++二叉平衡树.md",
     "C++数据结构/C++红黑树.md",
+    "C++数据结构/C++链表.md",
+    "C++数据结构/C++二叉平衡树.md",
     "C++数据结构/C++二叉树.md",
     "C++数据结构/C++二叉排序树.md",
     "C++数据结构/C++ B树.md",
@@ -201,7 +202,6 @@
     "C++/image/C++二叉排序树/file-20250608153848905.png",
     "C++/image/C++二叉排序树/file-20250608153724645.png",
     "C++/_image/C++二叉排序树",
-    "C++数据结构/C++链表.md",
     "C++数据结构/C++排序算法.md",
     "未命名.md",
     "未命名 2.md",
