@@ -466,8 +466,7 @@ class RBTree {
                 delete_node->parent->right = tmp;  
             }  
             delete delete_node;  
-        }  
-        root->color = BLACK;  
+        } 
     }  
     friend ostream& operator<<(ostream& os, const RBTree& tree) {  
         os << "===========================" << endl;  
