@@ -529,16 +529,13 @@ class RBTree {
     }  
     int check_black(Node* node) {  
         if (node == nil) {  
-            return 0;  
+            return 1;  
         }  
         int left = check_black(node->left);  
         int right = check_black(node->right);  
-        if (left == -1 || right == -1) {  
+        if (left == -1 || right == -1 || left != right) {  
             return -1;  
-        }  
-        if (left != 0 && right != 0 && left != right) {  
-            return -1;  
-        }  
+        }
         return left + (node->color == BLACK ? 1 : 0);  
     }  
     bool check_order(Node* node) {  
