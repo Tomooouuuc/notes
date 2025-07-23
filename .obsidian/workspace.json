@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++数据结构/C++排序算法.md",
-                "mode": "preview",
+                "file": "C++数据结构/C++ 树状数组.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C++排序算法"
+              "title": "C++ 树状数组"
             }
           }
         ]
@@ -173,6 +173,8 @@
   },
   "active": "a275294249363c99",
   "lastOpenFiles": [
+    "C++数据结构/C++排序算法.md",
+    "C++数据结构/C++ 树状数组.md",
     "C++数据结构/C++红黑树.md",
     "Java数据结构/Java红黑树.md",
     "C++数据结构/C++跳表.md",
@@ -203,7 +205,6 @@
     "C++/image/C++二叉排序树/file-20250608153924600.png",
     "C++/image/C++二叉排序树/file-20250608153848905.png",
     "C++/image/C++二叉排序树/file-20250608153724645.png",
-    "C++数据结构/C++排序算法.md",
     "未命名.md",
     "未命名 2.md",
     "未命名 1.md",
