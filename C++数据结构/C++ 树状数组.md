@@ -12,6 +12,26 @@ public:
             update(i,arr[i-1]);  
         }  
     }  
+    BIT(vector<int> arr):n(arr.size()){  
+        tree.resize(n+1,0);  
+        vector<int> sum(n+1,0);  
+        for(int i=1;i<=n;i++){  
+            sum[i]=sum[i-1]+arr[i-1];  
+        }  
+        for(int i=1;i<=n;i++){  
+            tree[i]=sum[i]-sum[i-lowbit(i)];  
+        }  
+    }
+    BIT(vector<int> arr):n(arr.size()){  
+        tree.resize(n+1,0);  
+        for(int i=1;i<=n;i++){  
+            tree[i]+=arr[i-1];  
+            int j=i+lowbit(i);  
+            if(j<=n){  
+                tree[j]+=tree[i];  
+            }  
+        }  
+    }
     int lowbit(int x){  
         return x&(-x);  
     }  
